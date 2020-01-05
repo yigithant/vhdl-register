@@ -1,0 +1,40 @@
+library ieee ;
+use ieee.std_logic_1164.all;
+use ieee.std_logic_arith.all;
+
+entity reg is port
+(
+i_data:in std_logic_vector(3 downto 0);
+i:in std_logic;
+clock:in std_logic;
+result:out std_logic_vector(3 downto 0)
+);
+end  reg;
+
+architecture behavior of  reg is
+begin
+process(clock)
+variable ara: std_logic_vector(3 downto 0); 
+--variable deðiþken atamasý;
+--architecture behavior of reg is
+--signal tanýmlamasý
+--begin
+--process(....) 
+--variable x,y
+--begin
+--þeklinde tanýmlanýr. kullanýlacak olan process içerisinde tanýmalnýr
+--deðiþken atamalarý <= þeklinde deðil
+-- := þeklinde olmalýdýr. 
+-- variable ile iþlem gerçeklþemeden atama yapýlýr. signal ile iþlem gerçekleþirken atama yapýlabilir
+-- bu da aþaðýdaki tarz bir program için hata verir.
+begin
+if (rising_edge(clock)) then
+	ara:=i_data;
+	for i in 0 to 2 loop
+		ara(i):=ara(i+1);
+	end loop;
+ara(3):=i;
+end if;
+result<=ara;
+end process;
+end behavior;
